@@ -1,75 +1,90 @@
 import tkinter as tk
 from tkinter import ttk
+from PIL import ImageTk, Image
+from Manager import Manager
 
-class Formula1App:
 
-    def __init__(self, root):
-        self.root = root
-        self.root.title("Administración de Fórmula 1")
-        self.root.geometry("800x600")
 
-        # Crear notebook
-        self.notebook = ttk.Notebook(self.root)
-        self.notebook.pack(fill="both", expand=True)
 
-        # Crear pestañas
-        self.create_about_us_tab()
-        self.create_teams_tab()
-        self.create_pilots_tab()
-        self.create_classification_tab()
-        self.create_circuits_tab()
-        self.create_history_tab()
-        self.create_live_tab()
+def settingFrame(self):
+    
+    #Setting the relative size of COLUMNS in the tabs on window
+    self.frame.columnconfigure(0, weight=1)
+    self.frame.columnconfigure(1, weight=1)
+    self.frame.columnconfigure(2, weight=1)
+    self.frame.columnconfigure(3, weight=1)
+    self.frame.columnconfigure(4, weight=1)
+    self.frame.columnconfigure(5, weight=1)
+    self.frame.columnconfigure(6, weight=1)
 
-    def create_about_us_tab(self):
-        # Crear pestaña de "About Us"
-        about_us_tab = ttk.Frame(self.notebook, width=800, height=550)
-        self.notebook.add(about_us_tab, text="About Us")
+    # Setting the relative size of ROWS in the tabs on window
+    self.frame.grid_rowconfigure(0, weight=1)
+    self.frame.grid_rowconfigure(1, weight=1)
+    self.frame.grid_rowconfigure(2, weight=1)
+    self.frame.grid_rowconfigure(3, weight=1)
+    self.frame.grid_rowconfigure(4, weight=1)
+    self.frame.grid_rowconfigure(5, weight=1)
+    self.frame.grid_rowconfigure(6, weight=1)
 
-        # Agregar widgets a la pestaña de "About Us"
-        about_us_label = ttk.Label(about_us_tab, text="Pestaña de About Us")
-        about_us_label.pack(pady=20)
+def start():
 
-    def create_teams_tab(self):
-        # Crear pestaña de equipos
-        teams_tab = ttk.Frame(self.notebook, width=800, height=550)
-        self.notebook.add(teams_tab, text="Equipos")
+    # Create and setting window
+    window = tk.Tk()
+    window.resizable(1, 1)
+    window.title(" Formula 1 Administrator ")
+    window.geometry("1000x600")
 
-        # Agregar widgets a la pestaña de equipos
-        team_label = ttk.Label(teams_tab, text="Pestaña de equipos")
-        team_label.pack(pady=20)
+    #Frame for Window: Create and configure the frame that contains all the elements displayed at that moment.
+    main = tk.Frame(window)
+    main.pack(fill=tk.BOTH)
+    main.config(bg="yellow")
 
-    def create_pilots_tab(self):
-        # Crear pestaña de pilotos
-        pilots_tab = ttk.Frame(self.notebook, width=800, height=550)
-        self.notebook.add(pilots_tab, text="Pilotos")
+    #Frame for Buttons: Positioning the frame that contains buttons at the top
+    buttons = tk.Frame(main)
+    buttons.grid(row=0, column=0, columnspan=7, sticky="nsew")
+    x = buttons
 
-        # Agregar widgets a la pestaña de pilotos
-        pilot_label = ttk.Label(pilots_tab, text="Pestaña de pilotos")
-        pilot_label.pack(pady=20)
+    #Frame for Screen: Contains element shown at the botton screen
+    screen = tk.Frame(main)
+    screen.grid(row=1, column=0, columnspan=7, sticky="nsew")
+    screen.config(bg="yellow")
 
-    def create_classification_tab(self):
-        # Crear pestaña de clasificación
-        classification_tab = ttk.Frame(self.notebook, width=800, height=550)
-        self.notebook.add(classification_tab, text="Clasificación")
+    # Create buttons for tabs
+    button1 = tk.Button(x, text=" About us ",) #, command=tab7.tkraise
+    button2 = tk.Button(x, text=" Teams ")
+    button3 = tk.Button(x, text=" Pilots ")
+    button4 = tk.Button(x, text=" Clasification ")
+    button5 = tk.Button(x, text=" Circuits ")
+    button6 = tk.Button(x, text=" History ")
+    button7 = tk.Button(x, text=" Live ")
 
-        # Agregar widgets a la pestaña de clasificación
-        classification_label = ttk.Label(classification_tab, text="Pestaña de clasificación")
-        classification_label.pack(pady=20)
+    # Position the buttons in the tabs
+    button1.grid(row=0, column=0, sticky="nsew")
+    button2.grid(row=0, column=1, sticky="nsew")
+    button3.grid(row=0, column=2, sticky="nsew")
+    button4.grid(row=0, column=3, sticky="nsew")
+    button5.grid(row=0, column=4, sticky="nsew")
+    button6.grid(row=0, column=5, sticky="nsew")
+    button7.grid(row=0, column=6, sticky="nsew")
 
-    def create_circuits_tab(self):
-        # Crear pestaña de circuitos
-        circuits_tab = ttk.Frame(self.notebook, width=800, height=550)
-        self.notebook.add(circuits_tab, text="Circuitos")
+    #Setting frames
+    main.settingFrame()
+    main.tkraise()
+    
+    main.settingFrame()
+    buttons.tkraise()
+    
+    main.settingFrame()
+    screen.tkraise()
 
-        # Agregar widgets a la pestaña de circuitos
-        circuit_label = ttk.Label(circuits_tab, text="Pestaña de circuitos")
-        circuit_label.pack(pady=20)
+    # Show the window
+    window.mainloop()
 
-    def create_history_tab(self):
-        # Crear pestaña de historia
-        history_tab = ttk.Frame(self.notebook, width=800, height=550)
-        self.notebook.add(history_tab, text="Historia")
+    # Loading the image
+    #im = ImageTk.PhotoImage(Image.open("E:/GIT/UNC-Method-Development-F1/images/front.jpg"))
+    #lbim = tk.Label(marcoButtons, image=im)
+    #lbim.pack()
 
-        # Agregar widgets a la pestaña de historia
-        history_label = ttk.Label
+if __name__ == "__main__":
+    app = Manager()
+    app.mainloop()
