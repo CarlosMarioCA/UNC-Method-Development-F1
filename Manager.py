@@ -1,6 +1,7 @@
 import tkinter as tk
 from data import style
 from screen import *
+from config import *
 
 class Manager(tk.Tk):
 
