@@ -1,13 +1,16 @@
 import tkinter as tk
 from data import style
 from screen import *
-from config import *
+from PIL import ImageTk, Image
+import os
 
 class Manager(tk.Tk):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args,**kwargs)
         self.title(" - Formula1 Administrator - ")
+        self.geometry(style.DIMENSIONS)
+        self.resizable(False,False)
         container = tk.Frame(self)
         container.pack(side="top", fill="both", expand=True)
         container.configure(background=style.BACKGROUND)

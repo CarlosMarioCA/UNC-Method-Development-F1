@@ -1,0 +1,1 @@
+TABS = ["About us", "Teams", "Pilots", "Classification", "Carrers", "History", "Live"]
