@@ -1,1 +1,1 @@
-TABS = ["About us", "Teams", "Pilots", "Classification", "Carrers", "History", "Live"]
+TABS = ["Start", "Teams", "Pilots", "Classification", "Carrers", "History", "Live"]

@@ -8,22 +8,41 @@ class Manager(tk.Tk):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args,**kwargs)
+
+        #Window settings
         self.title(" - Formula1 Administrator - ")
         self.geometry(style.DIMENSIONS)
         self.resizable(False,False)
-        container = tk.Frame(self)
-        container.pack(side="top", fill="both", expand=True)
-        container.configure(background=style.BACKGROUND)
-        container.grid_columnconfigure(0,weight=1) #This can define how many columns are on the screen.
-        container.grid_rowconfigure(0,weight=1)
-        self.frames= {} #Dictionary that contains all the frames that will be shown in the screen at some time.
+        self.configure(bg="yellow")
 
-        for F in (Start,Pilot):
-            frame = F(container, self)
-            self.frames[F] = frame
-            frame.grid(row=0, column=0, sticky="nsew")
-        self.show_frame(Start)
+        #Frame settings
+        self.container = tk.Frame(self)
+        self.container.pack(side="top", fill="both", expand=True)
+        self.container.grid_columnconfigure(0,weight=1) #This can define how many columns are on the screen.
+        self.container.grid_rowconfigure(0,weight=1)
+        self.container.configure(background=style.BACKGROUND)
+        
+        #Initialization of buttons frame
+        self.init_buttons(self.container)
+        self.frames= {"start": Start, "teams": Teams} #Dictionary that contains all the frames that will be shown in the screen at some time.
+        self.show_frame(self.frames["start"](self.container))
 
-    def show_frame(self, container):
-        frame = self.frames[container]
+    def init_buttons(self, container):
+        buttonFrame = tk.Frame(container)
+        tk.Button(buttonFrame, text=info.TABS[0], relief="flat", command= lambda: self.click_button("start")).pack(side="left", fill="x", expand=True)
+        tk.Button(buttonFrame, text=info.TABS[1], relief="flat", command= lambda: self.click_button("teams")).pack(side="left", fill="x", expand=True)
+        tk.Button(buttonFrame, text=info.TABS[2], relief="flat", command= lambda: self.click_button(info.TABS[2])).pack(side="left", fill="x", expand=True)
+        tk.Button(buttonFrame, text=info.TABS[3], relief="flat", command= lambda: self.click_button(info.TABS[3])).pack(side="left", fill="x", expand=True)
+        tk.Button(buttonFrame, text=info.TABS[4], relief="flat", command= lambda: self.click_button(info.TABS[4])).pack(side="left", fill="x", expand=True)
+        tk.Button(buttonFrame, text=info.TABS[5], relief="flat", command= lambda: self.click_button(info.TABS[5])).pack(side="left", fill="x", expand=True)
+        tk.Button(buttonFrame, text=info.TABS[6], relief="flat", command= lambda: self.click_button(info.TABS[6])).pack(side="left", fill="x", expand=True)
+        buttonFrame.pack(side="top", fill="x", expand=True)
+
+    def show_frame(self, frame):
         frame.tkraise() # Use this to put the frame in front, frame shown at this point.
+    
+    def click_button(self,text):
+        for a in self.container.winfo_children():
+            a.destroy()
+        self.init_buttons(self.container)
+        self.show_frame(self.frames[text](self.container))
