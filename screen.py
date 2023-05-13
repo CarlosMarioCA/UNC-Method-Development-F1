@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import ttk
 from data import style, info
 from PIL import ImageTk, Image
 from manager import *
@@ -10,12 +11,8 @@ class Start(tk.Frame):
         super().__init__(container)
         name = info.TABS[0]
         im = ""
-        self.configure(bg="yellow")
-        self.activation(container)
-
-    def activation(self, container):
         self.init_widget(container)
-        self.pack(side="bottom",fill="both",expand=True)
+        self.pack(side="left",fill="both",expand=True)
     
     def init_widget(self,container):
         #Loading the image
@@ -25,16 +22,142 @@ class Start(tk.Frame):
         lbim = tk.Label(imFrame, image = im).pack(side="left", fill="both", expand=True)
         lbtext = tk.Label(imFrame, text=style.ABOUT_US_DESCRIPTION, wraplength=300,justify="center").pack(side="right",fill="both",expand=True)
         imFrame.pack(side="top", fill="both",expand=True,padx=20,pady=10)
-        
+
 class Teams(tk.Frame):
 
     def __init__(self, container):
         super().__init__(container)
         name = info.TABS[1]
         im = ""
-        self.activation(container)
+        self.container = container
+        self.init_widget(container)
+        self.pack(side = "left",fill="both",expand=True)
 
-    def activation(self,container):
+    def init_widget(self,container):
+        frame = tk.Frame(container)
+        frame.pack(side="top", fill="both",expand=True)
+        
+        #Left side of the screen.
+        left = tk.Frame(frame)
+        left.configure(bg=style.PAGE)
+        tk.Label(left, text=" CRUD ", relief="flat").pack(side="top", fill="x", pady = 20)
+        tk.Button(left, text=" Create new team ", relief="flat", command=lambda: self.showMenu(bot,"create")).pack(side="top", pady = 10)
+        tk.Button(left, text=" Update team ", relief="flat").pack(side="top", pady = 10)
+        tk.Button(left, text=" Delete ", relief="flat").pack(side="top", pady = 10)
+        left.pack(side="left",fill="both",expand=True)
+
+        #Right side of the screen.
+        right = tk.Frame(frame)
+        tree = ttk.Treeview(right, columns=('Teams'))
+        scrollbar_vertical = ttk.Scrollbar(right, orient='vertical', command=tree.yview)
+        scrollbar_vertical.pack(side='right', fill='y')
+        tree.configure(yscrollcommand=scrollbar_vertical.set)
+
+        # Agregar encabezados de columna
+        number = list(range(1,len(info.TEAMS)+1))
+        teams = sorted(info.TEAMS)
+        tree.heading('#0', text='ID')
+        tree.heading('Teams', text='Teams')
+        for a,b in zip(number, teams):
+            tree.insert('', 'end', text=str(a), values=b)
+        
+        # Agregar elementos
+        tree.pack(side="right", fill="both", expand=True)
+        right.pack(side="right",fill="both",expand=True)
+
+class Pilots(tk.Frame):
+
+    def __init__(self, container):
+        super().__init__(container)
+        name = info.TABS[1]
+        im = ""
+        self.init_widget(container)
+        self.pack(side="left",fill="both",expand=True)
+
+
+    def init_widget(self,container):
+        frame = tk.Frame(container)
+        frame.pack(side="top", fill="both",expand=True)
+        
+        #Left side of the screen.
+        left = tk.Frame(frame)
+        left.configure(bg=style.PAGE)
+        tk.Label(left, text=" CRUD ", relief="flat").pack(side="top", fill="x", pady = 20)
+        tk.Button(left, text=" Create new team ", relief="flat", command=lambda: self.showMenu(bot,"create")).pack(side="top", pady = 10)
+        tk.Button(left, text=" Update team ", relief="flat").pack(side="top", pady = 10)
+        tk.Button(left, text=" Delete ", relief="flat").pack(side="top", pady = 10)
+        left.pack(side="left",fill="both",expand=True)
+
+        #Right side of the screen.
+        right = tk.Frame(frame)
+        right.pack(side="right",fill="both",expand=True)
+        tree = ttk.Treeview(right, columns=('Teams'))
+        scrollbar_vertical = ttk.Scrollbar(right, orient='vertical', command=tree.yview)
+        scrollbar_vertical.pack(side='right', fill='y')
+        tree.configure(yscrollcommand=scrollbar_vertical.set)
+
+        # Agregar encabezados de columna
+        number = list(range(1,len(info.TEAMS)+1))
+        teams = sorted(info.TEAMS)
+        tree.heading('#0', text='ID')
+        tree.heading('Teams', text='Teams')
+        for a,b in zip(number, teams):
+            tree.insert('', 'end', text=str(a), values=b)
+        
+        # Agregar elementos
+        tree.pack(side="right", fill="both", expand=True)
+        right.pack(side="right",fill="both",expand=True)
+
+class Classification(tk.Frame):
+
+    def __init__(self, container):
+        super().__init__(container)
+        name = info.TABS[1]
+        im = ""
+        self.init_widget(container)
+        self.configure(bg="yellow")
+        self.pack(side="left",fill="both",expand=True)
+
+    def init_widget(self,container):
+        frame = tk.Frame(container)
+        frame.pack(side="top", fill="both",expand=True)
+        
+        #Left side of the screen.
+        right = tk.Frame(frame)
+        right.configure(bg=style.PAGE)
+        tk.Label(right, text=" CRUD ", relief="flat").pack(side="top", fill="x", pady = 20)
+        tk.Button(right, text=" Create new team ", relief="flat", command=lambda: self.showMenu(bot,"create")).pack(side="top", pady = 10)
+        tk.Button(right, text=" Update team ", relief="flat").pack(side="top", pady = 10)
+        tk.Button(right, text=" Delete ", relief="flat").pack(side="top", pady = 10)
+        right.pack(side="right",fill="both",expand=True)
+
+        #Right side of the screen.
+        left = tk.Frame(frame)
+        left.pack(side="left",fill="both",expand=True)
+        tree = ttk.Treeview(left, columns=('Teams'))
+        scrollbar_vertical = ttk.Scrollbar(left, orient='vertical', command=tree.yview)
+        scrollbar_vertical.pack(side='left', fill='y')
+        tree.configure(yscrollcommand=scrollbar_vertical.set)
+
+        # Agregar encabezados de columna
+        number = list(range(1,len(info.TEAMS)+1))
+        teams = sorted(info.TEAMS)
+        tree.heading('#0', text='ID')
+        tree.heading('Teams', text='Teams')
+        for a,b in zip(number, teams):
+            tree.insert('', 'end', text=str(a), values=b)
+        
+        # Agregar elementos
+        tree.pack(side="right", fill="both", expand=True)
+        right.pack(side="right",fill="both",expand=True)
+
+
+class Carrers(tk.Frame):
+
+    def __init__(self, container):
+        super().__init__(container)
+        name = info.TABS[1]
+        im = ""
         self.init_widget(container)
         self.pack(side="bottom",fill="both",expand=True)
 
@@ -47,47 +170,39 @@ class Teams(tk.Frame):
         lbtext = tk.Label(imFrame, text=style.ABOUT_US_DESCRIPTION, wraplength=300,justify="center").pack(side="right",fill="both",expand=True)
         imFrame.pack(side="top", fill="both",expand=True,padx=20,pady=10)
 
+class History(tk.Frame):
 
-"""
-class Pilot(tk.Frame):
+    def __init__(self, container):
+        super().__init__(container)
+        name = info.TABS[1]
+        im = ""
+        self.init_widget(container)
+        self.pack(side="bottom",fill="both",expand=True)
 
-    def __init__(self, parent, controller):
-        super().__init__(parent)
-        self.configure(background=style.BACKGROUND)
-        self.controller = controller
+    def init_widget(self,container):
+        #Loading the image
+        imFrame = tk.Frame(container)
+        im = ImageTk.PhotoImage(Image.open("images/love.jpg").resize((400,350),resample=Image.BICUBIC))
+        self.im = im
+        lbim = tk.Label(imFrame, image = im).pack(side="left", fill="both", expand=True)
+        lbtext = tk.Label(imFrame, text=style.ABOUT_US_DESCRIPTION, wraplength=300,justify="center").pack(side="right",fill="both",expand=True)
+        imFrame.pack(side="top", fill="both",expand=True,padx=20,pady=10)
 
-class Pilot(tk.Frame):
+class Live(tk.Frame):
 
-    def __init__(self, parent, controller):
-        super().__init__(parent)
-        self.configure(background=style.BACKGROUND)
-        self.controller = controller
+    def __init__(self, container):
+        super().__init__(container)
+        name = info.TABS[1]
+        im = ""
+        self.init_widget(container)
+        self.pack(side="bottom",fill="both",expand=True)
 
-class Pilot(tk.Frame):
-
-    def __init__(self, parent, controller):
-        super().__init__(parent)
-        self.configure(background=style.BACKGROUND)
-        self.controller = controller
-
-class Pilot(tk.Frame):
-
-    def __init__(self, parent, controller):
-        super().__init__(parent)
-        self.configure(background=style.BACKGROUND)
-        self.controller = controller
-
-class Pilot(tk.Frame):
-
-    def __init__(self, parent, controller):
-        super().__init__(parent)
-        self.configure(background=style.BACKGROUND)
-        self.controller = controller
-
-class Pilot(tk.Frame):
-
-    def __init__(self, parent, controller):
-        super().__init__(parent)
-        self.configure(background=style.BACKGROUND)
-        self.controller = controller
-"""
+    def init_widget(self,container):
+        #Loading the image
+        imFrame = tk.Frame(container)
+        im = ImageTk.PhotoImage(Image.open("images/love.jpg").resize((400,350),resample=Image.BICUBIC))
+        self.im = im
+        lbim = tk.Label(imFrame, image = im).pack(side="left", fill="both", expand=True)
+        lbtext = tk.Label(imFrame, text=style.ABOUT_US_DESCRIPTION, wraplength=300,justify="center").pack(side="right",fill="both",expand=True)
+        imFrame.pack(side="top", fill="both",expand=True,padx=20,pady=10)
+ 

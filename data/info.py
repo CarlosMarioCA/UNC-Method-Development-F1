@@ -1,1 +1,2 @@
 TABS = ["Start", "Teams", "Pilots", "Classification", "Carrers", "History", "Live"]
+TEAMS = ["RedBull", "Mercedes", "Ferrari", "AlphaTauri", "AlphaRomeo","Aston Martin", "Williams","McLaren","Alpine","Haas"]
