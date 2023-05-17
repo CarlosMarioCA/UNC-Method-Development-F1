@@ -263,7 +263,7 @@ class Live(tk.Frame):
     def init_widget(self,container):
         #Loading the image
         imFrame = tk.Frame(container)
-        im = ImageTk.PhotoImage(Image.open("images/love.jpg").resize((400,350),resample=Image.BICUBIC))
+        im = ImageTk.PhotoImage(Image.open("images/history.jpg").resize((400,350),resample=Image.BICUBIC))
         self.im = im
         lbim = tk.Label(imFrame, image = im).pack(side="left", fill="both", expand=True)
         lbtext = tk.Label(imFrame, text=style.ABOUT_US_DESCRIPTION, wraplength=300,justify="center").pack(side="right",fill="both",expand=True)
