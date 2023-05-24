@@ -16,7 +16,7 @@ STYLE = {
 
 DIMENSIONS = "800x600"
 
-ABOUT_US_DESCRIPTION = "The Formula 1 Management System is a software application designed to manage all aspects of Formula 1 racing, including teams, drivers, races, and live race data. The system will provide an intuitive and user-friendly interface for users to manage and analyze all aspects of the sport."
+
 """
 Features:
 
