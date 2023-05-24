@@ -152,3 +152,15 @@ class Manager(tk.Tk):
             self.frames[F] = frame
         self.show_frame(Start)
 """
+
+def flippingMatrix(matrix):
+    large = len(matrix[0])
+    for i in range(0,large):
+        if(matrix[i][0]+matrix[i][1]) < (matrix[i][2]+matrix[i][3]):
+            matrix[i].reverse()
+    trans= np.transpose(matrix)
+    for i in range(0,large):
+        if(trans[i][0]+trans[i][1]) < (trans[i][2]+trans[i][3]):
+            list(trans[i]).reverse()
+    mat = np.transpose(trans)
+    num = mat[0][0] + mat[0][1] + mat[1][0] + mat[1][1]
