@@ -91,7 +91,38 @@ class Teams(tk.Frame):
         tk.Label(newWindow, text= " Select team to Update ").grid(row=1,column=0,padx=20,pady=10)
         varTeam = tk.StringVar()
         optionTeam = tk.OptionMenu(newWindow, varTeam, *info.TEAMS).grid(row=1,column=1,padx=10,pady=10, columnspan=2)
-        tk.Button(newWindow, text=" Update Team ",command= lambda: newWindow.destroy()).grid(row=2,column=0,padx=20,pady=10, columnspan=3)
+        tk.Button(newWindow, text=" Update Team ",command= lambda: self.updateTeam(newWindow,varTeam.get())).grid(row=2,column=0,padx=20,pady=10, columnspan=3)
+
+    def updateTeam(self,container,varTeam):
+        teamToUpdate = info.TEAMS_ATRIBUTES[varTeam]
+        print(teamToUpdate)
+        newWindow = tk.Toplevel(container)
+        newWindow.geometry("400x500")
+        newWindow.grid_columnconfigure(0,weight=1)
+        newWindow.grid_columnconfigure(1,weight=2)
+
+        tk.Label(newWindow, text=" UPDATE TEAM ").grid(row=0,column=0,padx=20,pady=30,columnspan=3)
+
+        tk.Label(newWindow, text=" Team name ").grid(row=1,column=0,padx=20,pady=10)
+        varName = tk.StringVar()
+        varName.set(teamToUpdate["Name"])
+        name = tk.Entry(newWindow, textvariable=varName).grid(row=1,column=1,padx=10,pady=10, columnspan=2)
+
+        tk.Label(newWindow, text="Team Budget").grid(row=2,column=0,padx=20,pady=10)
+        varBudget = tk.StringVar()
+        varBudget.set(teamToUpdate["Budget"])
+        budget = tk.Entry(newWindow, textvariable=varBudget).grid(row=2,column=1,padx=10,pady=10, columnspan=2)
+
+        tk.Label(newWindow, text="Trophy Case").grid(row=3,column=0,padx=20,pady=10)
+        varCase = tk.StringVar()
+        varCase.set(teamToUpdate["Trophies"])
+        budget = tk.Entry(newWindow, textvariable=varCase).grid(row=3,column=1,padx=10,pady=10, columnspan=2)
+
+        tk.Label(newWindow, text=" Existing Logotype ").grid(row=4,column=0,padx=20,pady=10)
+        logotype = tk.Button(newWindow, text= " Change Logotype ").grid(row=4,column=1,padx=10,pady=10, columnspan=2)
+
+        tk.Button(newWindow, text= " Create Team ",command= lambda: newWindow.destroy()).grid(row=5,column=0,padx=20,pady=10,columnspan=3)
+
 
     def openDeleteTeam(self,container):
         newWindow = tk.Toplevel(container)

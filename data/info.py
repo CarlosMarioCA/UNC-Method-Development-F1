@@ -30,9 +30,21 @@ COUNTRIES = [
     "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"
 ]
 
+TEAMS_ATRIBUTES = {"RedBull":{"Name":"Red Bull","Budget":500000000,"Trophies":6},
+         "Mercedes":{"Name":"Mercedes","Budget":500000000,"Trophies":8},
+         "Ferrari":{"Name":"Ferrari","Budget":450000000,"Trophies":16}, 
+         "AlphaTauri":{"Name":"AlphaTauri","Budget":200000000,"Trophies":0}, 
+         "AlphaRomeo":{"Name":"AlphaRomeo","Budget":150000000,"Trophies":0},
+         "Aston Martin":{"Name":"Aston Martin","Budget":45000000,"Trophies":0}, 
+         "Williams":{"Name":" Williams","Budget":150000000,"Trophies":9},
+         "McLaren":{"Name":"McLaren","Budget":350000000,"Trophies":8},
+         "Alpine":{"Name":"Alpine","Budget":400000000,"Trophies":0},
+         "Haas":{"Name":"Haas","Budget":150000000,"Trophies":0}
+         }
+
 POINTS = {"Max Verstapen":0,"Lewis Hamilton":0, "Sergio Perez":0, "George Rusell":0,
         "Charles Leclerc":0,"Carlos Sainz":0,"Fernando Alonso":0,"EstebanOcon":0,
-        "Lance Stroll":0,"Yuki Tsunoda":0,"Lucas Piastri":0,"Alexander Albon":0,
+        "Lance Stroll":0,"Yuki Tsunoda":5,"Lucas Piastri":0,"Alexander Albon":0,
         "Guanyu Zhou":0,"Valteri Botas":0,"Pierre Gasly":0,"Lando Norris":0,
         "Kevin Magnusen":0,"Nyck DeVries":0,"Logan Sargeant":0,"Nico Hulkenberg":0}
 
