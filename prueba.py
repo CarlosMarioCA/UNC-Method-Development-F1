@@ -1,15 +1,30 @@
 import tkinter as tk
 
-def set_default_text():
-    entry.delete(0, tk.END)  # Elimina el texto actual del Entry
-    entry.insert(0, "Texto predeterminado")  # Inserta el texto predeterminado
+# Crear una ventana principal
+ventana_principal = tk.Tk()
 
-root = tk.Tk()
+# Crear un Frame
+frame = tk.Frame(ventana_principal, width=200, height=200)
+frame.pack()
 
-entry = tk.Entry(root)
-entry.pack()
+# Agregar widgets al Frame
+label = tk.Label(frame, text="Hola, este es el contenido del Frame")
+label.pack()
 
-button = tk.Button(root, text="Establecer texto predeterminado", command=set_default_text)
-button.pack()
+boton = tk.Button(frame, text="Aceptar")
+boton.pack()
 
-root.mainloop()
+# Guardar el Frame y su contenido en una variable
+contenido_frame = frame
+
+# Cerrar la ventana principal
+ventana_principal.destroy()
+
+# Crear una nueva ventana para mostrar el Frame guardado
+ventana_secundaria = tk.Tk()
+
+# Mostrar el Frame guardado en la nueva ventana
+contenido_frame.pack(in_=ventana_secundaria)
+
+# Ejecutar el bucle principal de la nueva ventana
+ventana_secundaria.mainloop()

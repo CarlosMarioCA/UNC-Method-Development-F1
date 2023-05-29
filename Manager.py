@@ -9,6 +9,8 @@ class Manager(tk.Tk):
     def __init__(self, *args, **kwargs):
         super().__init__(*args,**kwargs)
 
+        self.season_started = False
+
         #Window settings
         self.title(" - Formula1 Administrator - ")
         self.geometry(style.DIMENSIONS)
@@ -25,21 +27,19 @@ class Manager(tk.Tk):
         #Initialization of buttons frame
         self.init_buttons(self.container)
         self.frames= {info.TABS[0]: Start, info.TABS[1]: Teams, 
-                    info.TABS[2]: Pilots, info.TABS[3]: Classification,
-                    info.TABS[4]: Carrers, info.TABS[5]: History,
-                    info.TABS[6]: Live
+                    info.TABS[2]: Pilots, info.TABS[3]: Classification_pilots,
+                    info.TABS[4]: Classification_constructor, info.TABS[5]: Circuits,
                     } #Dictionary that contains all the frames that will be shown in the screen at some time.
-        self.show_frame(self.frames[info.TABS[0]](self.container))
+        self.show_frame(self.frames[info.TABS[0]](self.container, self.season_started, self.start_season))
 
     def init_buttons(self, container):
         buttonFrame = tk.Frame(container)
-        tk.Button(buttonFrame, text=info.TABS[0], relief="flat", command= lambda: self.click_button(info.TABS[0])).pack(side="left", fill="x", expand=True)
+        tk.Button(buttonFrame, text=info.TABS[0], relief="flat", command= lambda: self.click_start(info.TABS[0])).pack(side="left", fill="x", expand=True)
         tk.Button(buttonFrame, text=info.TABS[1], relief="flat", command= lambda: self.click_button(info.TABS[1])).pack(side="left", fill="x", expand=True)
         tk.Button(buttonFrame, text=info.TABS[2], relief="flat", command= lambda: self.click_button(info.TABS[2])).pack(side="left", fill="x", expand=True)
         tk.Button(buttonFrame, text=info.TABS[3], relief="flat", command= lambda: self.click_button(info.TABS[3])).pack(side="left", fill="x", expand=True)
         tk.Button(buttonFrame, text=info.TABS[4], relief="flat", command= lambda: self.click_button(info.TABS[4])).pack(side="left", fill="x", expand=True)
         tk.Button(buttonFrame, text=info.TABS[5], relief="flat", command= lambda: self.click_button(info.TABS[5])).pack(side="left", fill="x", expand=True)
-        tk.Button(buttonFrame, text=info.TABS[6], relief="flat", command= lambda: self.click_button(info.TABS[6])).pack(side="left", fill="x", expand=True)
         buttonFrame.pack(side="top", fill="x", pady= 20)
 
     def show_frame(self, frame):
@@ -50,3 +50,15 @@ class Manager(tk.Tk):
             a.destroy()
         self.init_buttons(self.container)
         self.show_frame(self.frames[text](self.container))
+
+    def click_start(self,text):
+        for a in self.container.winfo_children():
+            a.destroy()
+        self.init_buttons(self.container)
+        self.show_frame(self.frames[text](self.container, self.season_started, self.start_season))
+
+    def set_start(self, frame):
+        self.frames[info.TABS[0]]=frame
+
+    def start_season(self):
+        self.season_started = True
